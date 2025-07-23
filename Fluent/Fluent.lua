@@ -3341,6 +3341,7 @@ local aa = {
         local ag, ah, ai, aj = af.Components, ac(af.Packages.Flipper), ac(af.Creator), {}
         aj.__index = aj
         aj.__type = "Paragraph"
+    
         function aj.New(c, d)
             assert(d.Title, "Paragraph - Missing Title")
             d.Content = d.Content or ""
@@ -3349,6 +3350,15 @@ local aa = {
             e.Border.Transparency = 0.6
             return e
         end
+    
+        function aj:SetDesc(newContent)
+            if self and self.Frame and self.TextLabel then
+                self.TextLabel.Text = newContent or ""
+            elseif self and self.Content then
+                self.Content = newContent or ""
+            end
+        end
+    
         return aj
     end,
     [26] = function()

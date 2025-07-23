@@ -30,10 +30,12 @@ do
 
 
 
-    Tabs.Main:AddParagraph({
+    local Paragraph = Tabs.Main:AddParagraph({
         Title = "Paragraph",
         Content = "This is a paragraph.\nSecond line!"
     })
+
+    Paragraph:SetDesc("This is a updated paragraph.\nSecond line!")
 
 
 

@@ -1,5 +1,5 @@
 local HttpService = game:GetService("HttpService")
-
+print("ffff")
 local InterfaceManager = {} do
 	InterfaceManager.Folder = "R3TH PRIV"
     InterfaceManager.Settings = {

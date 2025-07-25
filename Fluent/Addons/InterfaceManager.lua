@@ -114,14 +114,21 @@ local InterfaceManager = {} do
 		end)
 		Library.MinimizeKeybind = MenuKeybind
 
-		local TButton
+        local ToggleScreenGui, TButton
+        
         section:AddToggle("UIToggleButton", {
             Title = "UI Toggle Button",
-            Description = "",
+            Description = "Displays a floating 'T' button to toggle the UI (mobile support).",
             Default = true,
             Callback = function(Value)
                 if Value then
-                    if not TButton then
+                    if not ToggleScreenGui then
+                        ToggleScreenGui = Instance.new("ScreenGui")
+                        ToggleScreenGui.Name = "ToggleUIButtonGui"
+                        ToggleScreenGui.ResetOnSpawn = false
+                        ToggleScreenGui.IgnoreGuiInset = true
+                        ToggleScreenGui.Parent = game:GetService("CoreGui")
+        
                         TButton = Instance.new("TextButton")
                         TButton.Size = UDim2.fromOffset(36, 36)
                         TButton.Position = UDim2.fromOffset(20, 150)
@@ -136,16 +143,16 @@ local InterfaceManager = {} do
                         TButton.Name = "ToggleUIButton"
                         TButton.Active = true
                         TButton.Draggable = true
-                        TButton.Parent = game:GetService("CoreGui")
-
+                        TButton.Parent = ToggleScreenGui
+        
                         TButton.MouseButton1Click:Connect(function()
                             Library:Minimize()
                         end)
                     else
-                        TButton.Visible = true
+                        ToggleScreenGui.Enabled = true
                     end
-                elseif TButton then
-                    TButton.Visible = false
+                elseif ToggleScreenGui then
+                    ToggleScreenGui.Enabled = false
                 end
             end
         })

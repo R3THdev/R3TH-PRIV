@@ -113,6 +113,42 @@ local InterfaceManager = {} do
             InterfaceManager:SaveSettings()
 		end)
 		Library.MinimizeKeybind = MenuKeybind
+
+		local TButton
+        section:AddToggle("UIToggleButton", {
+            Title = "UI Toggle Button",
+            Description = "",
+            Default = true,
+            Callback = function(Value)
+                if Value then
+                    if not TButton then
+                        TButton = Instance.new("TextButton")
+                        TButton.Size = UDim2.fromOffset(36, 36)
+                        TButton.Position = UDim2.fromOffset(20, 150)
+                        TButton.Text = "T"
+                        TButton.Font = Enum.Font.GothamBold
+                        TButton.TextSize = 20
+                        TButton.TextColor3 = Color3.new(1, 1, 1)
+                        TButton.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+                        TButton.BorderSizePixel = 0
+                        TButton.BackgroundTransparency = 0.2
+                        TButton.AutoButtonColor = true
+                        TButton.Name = "ToggleUIButton"
+                        TButton.Active = true
+                        TButton.Draggable = true
+                        TButton.Parent = game:GetService("CoreGui")
+
+                        TButton.MouseButton1Click:Connect(function()
+                            Library:Minimize()
+                        end)
+                    else
+                        TButton.Visible = true
+                    end
+                elseif TButton then
+                    TButton.Visible = false
+                end
+            end
+        })
     end
 end
 

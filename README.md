@@ -13,6 +13,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/R3THdev/R3TH-PRIV/mai
 R3TH PRIV is currently compatible with:
 
 * Codex
+* Fluxus
 
 #
 > Please take note that this is strictly for educational purposes only.

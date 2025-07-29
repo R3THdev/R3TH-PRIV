@@ -14,6 +14,7 @@ R3TH PRIV is currently compatible with:
 
 * Codex
 * Fluxus
+* Delta
 
 #
 > Please take note that this is strictly for educational purposes only.

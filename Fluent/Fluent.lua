@@ -1889,6 +1889,12 @@ local aa = {
                     u:Notify {Title = "Interface", Content = "Press " .. N .. " to toggle the inteface.", Duration = 6}
                 end
             end
+            function v.IsDestroyed()
+                if not v.Root then
+                    return true
+                end
+                return v.Root.Parent == nil
+            end
             function v.Destroy(M)
                 if e(k).UseAcrylic then
                     v.AcrylicPaint.Model:Destroy()

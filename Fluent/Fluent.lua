@@ -6,7 +6,7 @@
     License: MIT
     GitHub: https://github.com/dawid-scripts/Fluent
 --]]
-print("v2")
+
 local a, b = {
     {
         1,
@@ -1889,11 +1889,11 @@ local aa = {
                     u:Notify {Title = "Interface", Content = "Press " .. N .. " to toggle the inteface.", Duration = 6}
                 end
             end
-            function v.DoesExist()
+            function v.IsDestroyed()
                 if not v.Root then
-                    return false
+                    return true
                 end
-                return v.Root.Parent ~= nil
+                return v.Root.Parent == nil
             end
             function v.Destroy(M)
                 if e(k).UseAcrylic then

@@ -1889,11 +1889,11 @@ local aa = {
                     u:Notify {Title = "Interface", Content = "Press " .. N .. " to toggle the inteface.", Duration = 6}
                 end
             end
-            function v.IsDestroyed()
+            function v.DoesExist()
                 if not v.Root then
-                    return true
+                    return false
                 end
-                return v.Root.Parent == nil
+                return v.Root.Parent ~= nil
             end
             function v.Destroy(M)
                 if e(k).UseAcrylic then

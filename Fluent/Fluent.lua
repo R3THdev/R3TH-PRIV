@@ -1,12 +1,11 @@
 --[[
     Fluent Interface Suite
-    This script is not intended to be modified.
 
     Author: dawid
-    License: MIT
+    Improved By: R3THdev
     GitHub: https://github.com/dawid-scripts/Fluent
 --]]
-print("ffff")
+
 local a, b = {
     {
         1,

@@ -6,7 +6,7 @@
     License: MIT
     GitHub: https://github.com/dawid-scripts/Fluent
 --]]
-print("gggg")
+print("ffff")
 local a, b = {
     {
         1,
@@ -2980,34 +2980,29 @@ local aa = {
                             S:setGoal(d.Spring.new(N and 14 or 6, {frequency = 6}))
                             R(N and 0 or 1)
                         end
-                        L.InputBegan:Connect(
-                            function(T)
-                                if
-                                    T.UserInputType == Enum.UserInputType.MouseButton1 or
-                                        T.UserInputType == Enum.UserInputType.Touch
-                                 then
-                                    local U = not N
-                                    if j.Multi then
-                                        N = U
-                                        l.Value[I] = N and true or nil
+                        L.InputBegan:Connect(function(T)
+                            if T.UserInputType == Enum.UserInputType.MouseButton1 or T.UserInputType == Enum.UserInputType.Touch then
+                                if j.Multi then
+                                    N = not N
+                                    l.Value[I] = N and true or nil
+                                else
+                                    if l.Value == I then
+                                        l.Value = nil
                                     else
-                                        if N then
-                                            l.Value = I
-                                        else
-                                            l.Value = nil
-                                        end
-                                        for V, W in next, D do
-                                            W:UpdateButton()
-                                        end
+                                        l.Value = I
                                     end
-                                    J:UpdateButton()
-                                    l:Display()
-                                    k:SafeCallback(l.Callback, l.Value)
-                                    k:SafeCallback(l.Changed, l.Value)
-
+                                    for _, W in next, D do
+                                        W:UpdateButton()
+                                    end
                                 end
+                        
+                                J:UpdateButton()
+                                l:Display()
+                                k:SafeCallback(l.Callback, l.Value)
+                                k:SafeCallback(l.Changed, l.Value)
                             end
-                        )
+                        end)
+
                         J:UpdateButton()
                         l:Display()
                         D[M] = J

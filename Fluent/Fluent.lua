@@ -1905,37 +1905,44 @@ local aa = {
             function v.Dialog(N, O)
                 local P = M:Create()
                 P.Title.Text = O.Title
-                local Q =
-                    s(
-                    "TextLabel",
-                    {
-                        FontFace = Font.new "rbxasset://fonts/families/GothamSSm.json",
-                        Text = O.Content,
-                        TextColor3 = Color3.fromRGB(240, 240, 240),
-                        TextSize = 14,
-                        TextXAlignment = Enum.TextXAlignment.Left,
-                        TextYAlignment = Enum.TextYAlignment.Top,
-                        Size = UDim2.new(1, -40, 1, 0),
-                        Position = UDim2.fromOffset(20, 60),
-                        BackgroundTransparency = 1,
-                        Parent = P.Root,
-                        ClipsDescendants = false,
-                        ThemeTag = {TextColor3 = "Text"}
-                    }
-                )
-                s(
-                    "UISizeConstraint",
-                    {MinSize = Vector2.new(300, 165), MaxSize = Vector2.new(620, math.huge), Parent = P.Root}
-                )
+            
+                local Q = s("TextLabel", {
+                    FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
+                    Text = O.Content,
+                    TextColor3 = Color3.fromRGB(240, 240, 240),
+                    TextSize = 14,
+                    TextXAlignment = Enum.TextXAlignment.Left,
+                    TextYAlignment = Enum.TextYAlignment.Top,
+                    Size = UDim2.new(1, -40, 1, 0),
+                    Position = UDim2.fromOffset(20, 60),
+                    BackgroundTransparency = 1,
+                    Parent = P.Root,
+                    ClipsDescendants = false,
+                    ThemeTag = {TextColor3 = "Text"},
+                })
+            
+                s("UISizeConstraint", {
+                    MinSize = Vector2.new(300, 165),
+                    MaxSize = Vector2.new(620, math.huge),
+                    Parent = P.Root
+                })
+            
                 P.Root.Size = UDim2.fromOffset(Q.TextBounds.X + 40, 165)
                 if Q.TextBounds.X + 40 > v.Size.X.Offset - 120 then
                     P.Root.Size = UDim2.fromOffset(v.Size.X.Offset - 120, 165)
                     Q.TextWrapped = true
                     P.Root.Size = UDim2.fromOffset(v.Size.X.Offset - 120, Q.TextBounds.Y + 150)
                 end
+            
+                if v.Root and v.Root:IsA("GuiObject") then
+                    v.Root.Position = UDim2.new(0.5, -v.Root.Size.X.Offset / 2, 0.5, -v.Root.Size.Y.Offset / 2)
+                    v.Root.AnchorPoint = Vector2.new(0, 0)
+                end
+
                 for R, S in next, O.Buttons do
                     P:Button(S.Title, S.Callback)
                 end
+            
                 P:Open()
             end
             local N = e(p.Tab):Init(v)

@@ -6,7 +6,7 @@
     License: MIT
     GitHub: https://github.com/dawid-scripts/Fluent
 --]]
-print("ff")
+
 local a, b = {
     {
         1,
@@ -2987,25 +2987,23 @@ local aa = {
                                         T.UserInputType == Enum.UserInputType.Touch
                                  then
                                     local U = not N
-                                    if j.Multi then
-                                        N = U
-                                        l.Value[I] = N and true or nil
+                                    if l:GetActiveValues() == 1 and not U and not j.AllowNull then
                                     else
-                                        if N then
-                                            l.Value = I
-                                        elseif j.AllowNull then
-                                            l.Value = nil
+                                        if j.Multi then
+                                            N = U
+                                            l.Value[I] = N and true or nil
                                         else
-                                            return
+                                            N = U
+                                            l.Value = N and I or nil
+                                            for V, W in next, D do
+                                                W:UpdateButton()
+                                            end
                                         end
-                                        for V, W in next, D do
-                                            W:UpdateButton()
-                                        end
+                                        J:UpdateButton()
+                                        l:Display()
+                                        k:SafeCallback(l.Callback, l.Value)
+                                        k:SafeCallback(l.Changed, l.Value)
                                     end
-                                    J:UpdateButton()
-                                    l:Display()
-                                    k:SafeCallback(l.Callback, l.Value)
-                                    k:SafeCallback(l.Changed, l.Value)
                                 end
                             end
                         )

@@ -207,19 +207,19 @@ local SaveManager = {} do
     	local section = tab:AddSection("Configuration")
     
     	section:AddInput("SaveManager_ConfigName", {
-    		Title = "Configuration name"
+    		Title = "Config name"
     	})
     
     	section:AddDropdown("SaveManager_ConfigList", {
-    		Title = "Configuration list",
+    		Title = "Config list",
     		Values = self:RefreshConfigList(),
     		AllowNull = true
     	})
     
-    	local actions = { "Create", "Load", "Overwrite", "Delete", "Refresh" }
+    	local actions = { "Create Config", "Load Config", "Overwrite Config", "Delete Config", }
     
     	section:AddDropdown("SaveManager_ActionDropdown", {
-    		Title = "Select Action",
+    		Title = "Config Action",
     		Values = actions,
     		Default = "Create",
     		Callback = function(action)
@@ -235,7 +235,7 @@ local SaveManager = {} do
     				})
     			end
     
-    			if action == "Create" then
+    			if action == "Create Config" then
     				if nameInput:gsub(" ", "") == "" then
     					return notify("The configuration cannot have an empty name.")
     				end
@@ -248,8 +248,7 @@ local SaveManager = {} do
     				notify(string.format("Successfully created: %q", nameInput))
     				SaveManager.Options.SaveManager_ConfigList:SetValues(self:RefreshConfigList())
     				SaveManager.Options.SaveManager_ConfigList:SetValue(nil)
-    
-    			elseif action == "Load" then
+    			elseif action == "Load Config" then
     				if not selectedConfig then
     					return notify("No configuration selected to load.")
     				end
@@ -260,8 +259,7 @@ local SaveManager = {} do
     				end
     
     				notify(string.format("Successfully loaded: %q", selectedConfig))
-    
-    			elseif action == "Overwrite" then
+    			elseif action == "Overwrite Config" then
     				if not selectedConfig then
     					return notify("No configuration selected to overwrite.")
     				end
@@ -272,8 +270,7 @@ local SaveManager = {} do
     				end
     
     				notify(string.format("Successfully overwrote: %q", selectedConfig))
-    
-    			elseif action == "Delete" then
+    			elseif action == "Delete Config" then
     				if not selectedConfig then
     					return notify("No configuration selected to delete.")
     				end
@@ -292,10 +289,6 @@ local SaveManager = {} do
     				else
     					notify("Configuration file not found.")
     				end
-    
-    			elseif action == "Refresh" then
-    				SaveManager.Options.SaveManager_ConfigList:SetValues(self:RefreshConfigList())
-    				SaveManager.Options.SaveManager_ConfigList:SetValue(nil)
     			end
     		end
     	})

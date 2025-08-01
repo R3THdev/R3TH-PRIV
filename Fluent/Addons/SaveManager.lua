@@ -186,7 +186,7 @@ local SaveManager = {} do
 			if not success then
 				return self.Library:Notify({
 					Title = "R3TH PRIV",
-					Content = "Configuration Loader",
+					Content = "",
 					SubContent = "Failed to load the autoload configuration: " .. err,
 					Duration = 7
 				})
@@ -194,7 +194,7 @@ local SaveManager = {} do
 
 			self.Library:Notify({
 				Title = "R3TH PRIV",
-				Content = "Configuration Loader",
+				Content = "",
 				SubContent = string.format("Successfully auto-loaded: %q", name),
 				Duration = 7
 			})

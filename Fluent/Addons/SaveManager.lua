@@ -221,7 +221,7 @@ local SaveManager = {} do
     	section:AddDropdown("SaveManager_ActionDropdown", {
     		Title = "Config Action",
     		Values = actions,
-    		Default = "Create",
+    		Default = "",
     		Callback = function(action)
     			local nameInput = SaveManager.Options.SaveManager_ConfigName.Value
     			local selectedConfig = SaveManager.Options.SaveManager_ConfigList.Value

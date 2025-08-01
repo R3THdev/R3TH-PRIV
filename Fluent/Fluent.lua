@@ -6,7 +6,7 @@
     License: MIT
     GitHub: https://github.com/dawid-scripts/Fluent
 --]]
-print("kukuyhyt")
+
 local a, b = {
     {
         1,
@@ -1091,31 +1091,19 @@ local aa = {
         local h = d.Parent.Parent
         local i = e(h.Creator)
         local j = i.New
-    
         return function(k, l)
             local m = {}
-    
             m.Layout = j("UIListLayout", {Padding = UDim.new(0, 5)})
-    
-            m.Container = j(
+            m.Container =
+                j(
                 "Frame",
-                {
-                    Size = UDim2.new(1, 0, 0, 26),
-                    Position = UDim2.fromOffset(0, 24),
-                    BackgroundTransparency = 1
-                },
+                {Size = UDim2.new(1, 0, 0, 26), Position = UDim2.fromOffset(0, 24), BackgroundTransparency = 1},
                 {m.Layout}
             )
-    
-            m.Root = j(
+            m.Root =
+                j(
                 "Frame",
-                {
-                    BackgroundTransparency = 1,
-                    Size = UDim2.new(1, 0, 0, 26),
-                    LayoutOrder = 7,
-                    Parent = l,
-                    ClipsDescendants = true
-                },
+                {BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 26), LayoutOrder = 7, Parent = l},
                 {
                     j(
                         "TextLabel",
@@ -1139,49 +1127,13 @@ local aa = {
                     m.Container
                 }
             )
-    
-            m.Root.InputBegan:Connect(function(input)
-                if input.UserInputType == Enum.UserInputType.MouseButton1 or
-                   input.UserInputType == Enum.UserInputType.Touch then
-    
-                    local pos = m.Root:ScreenToLocal(input.Position)
-                    local ripple = Instance.new("Frame")
-                    ripple.Name = "RippleEffect"
-                    ripple.AnchorPoint = Vector2.new(0.5, 0.5)
-                    ripple.BackgroundColor3 = Color3.new(1, 1, 1)
-                    ripple.BackgroundTransparency = 0.5
-                    ripple.BorderSizePixel = 0
-                    ripple.ZIndex = m.Root.ZIndex + 1
-                    ripple.Position = UDim2.new(0, pos.X, 0, pos.Y)
-                    ripple.Size = UDim2.new(0, 0, 0, 0)
-                    ripple.ClipsDescendants = false
-                    ripple.Parent = m.Root
-    
-                    local TweenService = game:GetService("TweenService")
-                    local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
-    
-                    TweenService:Create(ripple, tweenInfo, {
-                        Size = UDim2.new(0, 150, 0, 150),
-                        BackgroundTransparency = 1,
-                        Position = UDim2.new(0, pos.X - 75, 0, pos.Y - 75)
-                    }):Play()
-    
-                    delay(0.5, function()
-                        if ripple and ripple.Parent then
-                            ripple:Destroy()
-                        end
-                    end)
-                end
-            end)
-    
             i.AddSignal(
-                m.Layout:GetPropertyChangedSignal("AbsoluteContentSize"),
+                m.Layout:GetPropertyChangedSignal "AbsoluteContentSize",
                 function()
                     m.Container.Size = UDim2.new(1, 0, 0, m.Layout.AbsoluteContentSize.Y)
                     m.Root.Size = UDim2.new(1, 0, 0, m.Layout.AbsoluteContentSize.Y + 25)
                 end
             )
-    
             return m
         end
     end,

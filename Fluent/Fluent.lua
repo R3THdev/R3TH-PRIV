@@ -6,7 +6,7 @@
     License: MIT
     GitHub: https://github.com/dawid-scripts/Fluent
 --]]
-print("fff")
+print("2.0")
 local a, b = {
     {
         1,
@@ -1789,7 +1789,11 @@ local aa = {
                     if M.UserInputType == Enum.UserInputType.MouseButton1 or M.UserInputType == Enum.UserInputType.Touch then
                         w = true
                         y = M.Position
-                        z = v.Root.Position
+                        local anchor = v.Root.AnchorPoint or Vector2.new(0, 0)
+                        local absSize = v.Root.AbsoluteSize
+                        local anchorOffset = Vector2.new(absSize.X * anchor.X, absSize.Y * anchor.Y)
+                        z = UDim2.fromOffset(v.Root.AbsolutePosition.X - anchorOffset.X, v.Root.AbsolutePosition.Y - anchorOffset.Y)
+            
                         if v.Maximized then
                             z =
                                 UDim2.fromOffset(
@@ -1797,13 +1801,12 @@ local aa = {
                                 i.Y - (i.Y * (L / v.Root.AbsoluteSize.Y))
                             )
                         end
-                        M.Changed:Connect(
-                            function()
-                                if M.UserInputState == Enum.UserInputState.End then
-                                    w = false
-                                end
+            
+                        M.Changed:Connect(function()
+                            if M.UserInputState == Enum.UserInputState.End then
+                                w = false
                             end
-                        )
+                        end)
                     end
                 end
             )

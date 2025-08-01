@@ -6,7 +6,7 @@
     License: MIT
     GitHub: https://github.com/dawid-scripts/Fluent
 --]]
-print("2.0")
+print("rrhgh")
 local a, b = {
     {
         1,
@@ -1906,6 +1906,7 @@ local aa = {
             end
             local M = e(p.Dialog):Init(v)
             function v.Dialog(N, O)
+                local TweenService = game:GetService("TweenService")
                 local P = M:Create()
                 P.Title.Text = O.Title
             
@@ -1929,19 +1930,28 @@ local aa = {
                     MaxSize = Vector2.new(620, math.huge),
                     Parent = P.Root
                 })
-            
+
                 P.Root.Size = UDim2.fromOffset(Q.TextBounds.X + 40, 165)
                 if Q.TextBounds.X + 40 > v.Size.X.Offset - 120 then
                     P.Root.Size = UDim2.fromOffset(v.Size.X.Offset - 120, 165)
                     Q.TextWrapped = true
                     P.Root.Size = UDim2.fromOffset(v.Size.X.Offset - 120, Q.TextBounds.Y + 150)
                 end
-            
-                if v.Root and v.Root:IsA("GuiObject") then
-                    v.Root.Position = UDim2.new(0.5, -v.Root.Size.X.Offset / 2, 0.5, -v.Root.Size.Y.Offset / 2)
-                    v.Root.AnchorPoint = Vector2.new(0, 0)
-                end
 
+                if v.Root and v.Root:IsA("GuiObject") then
+                    v.Root.AnchorPoint = Vector2.new(0, 0)
+                    local vpSize = workspace.CurrentCamera.ViewportSize
+                    local absSize = v.Root.AbsoluteSize
+            
+                    local targetPosition = UDim2.fromOffset(
+                        (vpSize.X - absSize.X) / 2,
+                        (vpSize.Y - absSize.Y) / 2
+                    )
+            
+                    local tweenInfo = TweenInfo.new(0.25, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+                    game:GetService("TweenService"):Create(v.Root, tweenInfo, {Position = targetPosition}):Play()
+                end
+            
                 for R, S in next, O.Buttons do
                     P:Button(S.Title, S.Callback)
                 end

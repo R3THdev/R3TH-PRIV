@@ -207,16 +207,16 @@ local SaveManager = {} do
     	local section = tab:AddSection("Configuration")
     
     	section:AddInput("SaveManager_ConfigName", {
-    		Title = "Config name"
+    		Title = "Config Name"
     	})
     
     	section:AddDropdown("SaveManager_ConfigList", {
-    		Title = "Config list",
+    		Title = "Config List",
     		Values = self:RefreshConfigList(),
     		AllowNull = true
     	})
     
-    	local actions = { "Create Config", "Load Config", "Overwrite Config", "Delete Config", }
+    	local actions = { "Load Config", "Create Config", "Delete Config", "Overwrite Config" }
     
     	section:AddDropdown("SaveManager_ActionDropdown", {
     		Title = "Config Action",
@@ -295,7 +295,7 @@ local SaveManager = {} do
     
     	local AutoloadButton
     	AutoloadButton = section:AddButton({
-    		Title = "Auto-load the selected config.",
+    		Title = "Auto Load the selected config.",
     		Description = "Current Config: None",
     		Callback = function()
     			local name = SaveManager.Options.SaveManager_ConfigList.Value

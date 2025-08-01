@@ -229,7 +229,7 @@ local SaveManager = {} do
     			local function notify(msg)
     				self.Library:Notify({
     					Title = "R3TH PRIV",
-    					Content = "Configuration Loader",
+    					Content = "",
     					SubContent = msg,
     					Duration = 7
     				})
@@ -295,15 +295,15 @@ local SaveManager = {} do
     
     	local AutoloadButton
     	AutoloadButton = section:AddButton({
-    		Title = "Auto-load the specified configuration.",
-    		Description = "Current autoload configuration: none",
+    		Title = "Auto-load the selected config.",
+    		Description = "Current Config: None",
     		Callback = function()
     			local name = SaveManager.Options.SaveManager_ConfigList.Value
     			writefile(self.Folder .. "/settings/autoload.txt", name)
-    			AutoloadButton:SetDesc("Current autoload configuration: " .. name)
+    			AutoloadButton:SetDesc("Current Config: " .. name)
     			self.Library:Notify({
     				Title = "R3TH PRIV",
-    				Content = "Configuration Loader",
+    				Content = "",
     				SubContent = string.format("Set %q to automatically load.", name),
     				Duration = 7
     			})
@@ -312,7 +312,7 @@ local SaveManager = {} do
     
     	if isfile(self.Folder .. "/settings/autoload.txt") then
     		local name = readfile(self.Folder .. "/settings/autoload.txt")
-    		AutoloadButton:SetDesc("Current autoload configuration: " .. name)
+    		AutoloadButton:SetDesc("Current Config: " .. name)
     	end
     
     	SaveManager:SetIgnoreIndexes({

@@ -9,12 +9,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/R3THdev/R3TH-PRIV/mai
 ```
 
 ## Compatibility
-
-R3TH PRIV is currently compatible with:
-
+R3TH PRIV works great with:
 * Codex
 * Fluxus
 * Delta
+
+Many other executors likely support it too — just haven’t been tested here yet.
 
 #
 > Please take note that this is strictly for educational purposes only.
